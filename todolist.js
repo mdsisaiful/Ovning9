@@ -15,6 +15,9 @@ filter.addEventListener('click', filterToDoList);
 function addToDoList(event) {
     event.preventDefault();
     // console.log('is list working?');
+    if(input.value === ""){
+        alert('Please enter an item');
+    }
 
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
@@ -39,6 +42,9 @@ function addToDoList(event) {
     editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.classList.add("edit-btn");
     todoDiv.appendChild(editButton);
+    editButton.onclick = function(){
+        editItems(newTodo);
+    }
 
     // Trash button
     const trashButton = document.createElement('button');
@@ -53,7 +59,16 @@ function addToDoList(event) {
 
     // clear input value
     input.value = "";
+    
 }
+
+function editItems(e){
+    var editItem = prompt('Please edit your item!', e.firstChild.nodeValue);
+    e.firstChild.nodeValue = editItem;
+    console.log(item);
+
+}
+
 
 function deleteCheckToDoList(e) {
     // console.log(e.target);
